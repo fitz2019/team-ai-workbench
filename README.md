@@ -138,6 +138,10 @@ docs/
 
 We do **not** use ECC raw.
 
+Upstream reference:
+
+- [ECC by affaan-m](https://github.com/affaan-m/ECC)
+
 We treat ECC as:
 
 - an upstream capability source
@@ -150,6 +154,11 @@ In short:
 
 > We are not avoiding ECC. We are not using it unchanged.  
 > We use ECC as a capability source, then combine it with our own engineering standards to build a workbench that fits day-to-day team delivery.
+
+## Acknowledgement
+
+This workbench is informed by ideas and assets from [ECC](https://github.com/affaan-m/ECC).  
+We use ECC as an upstream capability source and structure reference, then curate and adapt it to fit our own engineering standards and team operating model.
 
 ## Governance Docs
 
