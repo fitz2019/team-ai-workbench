@@ -1,0 +1,67 @@
+---
+name: project-specific
+load_when:
+  - project_behavior
+  - docs
+  - api
+  - db
+  - business_logic
+priority: high
+purpose: Workspace-specific business, documentation, API, DB, and communication rules.
+---
+
+# Project-Specific Rules
+
+Load this file whenever project behavior, docs, API, DB, or business logic is touched.
+
+This is the primary file to edit when adapting the shared AI collaboration baseline to a new project.
+
+## Workspace
+
+- Workspace root: `C:\path\to\project`
+- If the workspace contains nested repositories, run Git commands from the actual repository root
+
+## Language And Communication
+
+- Product and implementation discussion language: `Chinese` or `English`
+- User-facing summaries, docs, business comments, and release notes should follow the project's default language unless the user asks otherwise
+- Keep technical answers concise and action-oriented
+
+## Backend Scope
+
+- If the user says "只负责后端" or equivalent, do not modify frontend code
+- For API changes, describe request fields, response fields, compatibility, examples, and caller adaptation steps
+- Preserve API backward compatibility by default
+
+## Current Project Vocabulary
+
+List the identifiers and business terms that are project-specific and should not leak into shared modules. Examples:
+
+- `tenant_id`
+- `shop_id`
+- `platform`
+- `order_id`
+- `buyer_uid`
+
+## Documentation
+
+- Put documents in the exact path requested by the user
+- If a schema change is introduced and the user asks for release notes, add SQL change documentation
+
+## Database And Release Notes
+
+- Prefer existing migration framework if the project has one
+- If there is no migration framework or the user asks for release SQL, provide explicit DDL or DML documentation
+- Schema changes should include rollout and rollback considerations when they affect existing data, large tables, public APIs, or background jobs
+
+## Redis And Configuration Consistency
+
+- Document TTL, invalidation path, failure logging, and expected consistency window for config-like caches
+
+## Security Sensitivity
+
+- Document the repository's tenant, owner, permission, and cross-scope risk points here
+
+## Skills
+
+- If the repository has local `.codex/skills`, list the few that should be loaded before implementation work

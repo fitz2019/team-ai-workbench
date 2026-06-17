@@ -1,0 +1,7 @@
+[agents.react_reviewer]
+description = "React-specific reviewer focused on hooks, boundaries, accessibility, and render correctness."
+config_file = "agents/react-reviewer.toml"
+
+[agents.react_build_resolver]
+description = "React build and hydration issue resolver for Vite, Next.js, webpack, and similar toolchains."
+config_file = "agents/react-build-resolver.toml"

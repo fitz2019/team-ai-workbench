@@ -1,0 +1,7 @@
+[agents.planner]
+description = "Planning role for multi-step features, cross-cutting changes, and scoped implementation breakdown."
+config_file = "agents/planner.toml"
+
+[agents.spec_miner]
+description = "Specification extraction role for turning existing behavior into durable, reviewable capability notes."
+config_file = "agents/spec-miner.toml"

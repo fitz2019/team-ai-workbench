@@ -1,0 +1,7 @@
+[agents.network_troubleshooter]
+description = "Read-only network and connectivity diagnosis role."
+config_file = "agents/network-troubleshooter.toml"
+
+[agents.network_config_reviewer]
+description = "Network and infrastructure configuration review role."
+config_file = "agents/network-config-reviewer.toml"

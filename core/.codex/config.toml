@@ -1,0 +1,38 @@
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+web_search = "live"
+
+persistent_instructions = "Root AGENTS.md and .agents/ are the project source of truth. Route through .agents/index.md first, load only the required modules, preserve repository patterns, and verify only the touched scope."
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp@latest"]
+startup_timeout_sec = 30
+
+[mcp_servers.sequential-thinking]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+startup_timeout_sec = 30
+
+[features]
+multi_agent = true
+
+[agents]
+max_threads = 4
+max_depth = 1
+
+[agents.explorer]
+description = "Read-only codebase explorer for evidence gathering."
+config_file = "agents/explorer.toml"
+
+[agents.reviewer]
+description = "General reviewer focused on correctness, regressions, security boundaries, and missing verification."
+config_file = "agents/reviewer.toml"
+
+[agents.docs_researcher]
+description = "Documentation specialist that verifies APIs, libraries, and release-note claims against primary docs."
+config_file = "agents/docs-researcher.toml"
+
+[agents.security_reviewer]
+description = "Security review role for auth, input handling, secrets, and sensitive flows."
+config_file = "agents/security-reviewer.toml"

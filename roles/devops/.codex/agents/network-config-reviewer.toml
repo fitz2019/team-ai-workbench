@@ -1,0 +1,8 @@
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+sandbox_mode = "read-only"
+
+developer_instructions = """
+Review infrastructure and network configuration with a focus on safety, stale references, risky commands, and missing guardrails.
+Return prioritized findings with evidence and safe remediation guidance.
+"""

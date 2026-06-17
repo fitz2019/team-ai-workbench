@@ -1,0 +1,49 @@
+---
+name: project-specific
+load_when:
+  - project_behavior
+  - docs
+  - api
+  - db
+  - business_logic
+priority: high
+purpose: Workspace-specific business, documentation, API, DB, and communication rules.
+---
+
+# Project-Specific Rules
+
+Load this file whenever project behavior, docs, API, DB, or business logic is touched.
+
+This file is the main adaptation layer for any project that uses this workbench.
+
+## Workspace
+
+- Workspace root: `C:\path\to\project`
+- If the workspace contains nested repositories, note them here and run Git commands from the actual repository root
+
+## Language And Communication
+
+- Product and implementation discussion language: `Chinese` or `English`
+- User-facing summaries, docs, business comments, and release notes should follow the project's default language unless the user asks otherwise
+
+## Project Vocabulary
+
+List business identifiers, API terms, tenant or owner concepts, and release vocabulary that are specific to this repository.
+
+## Commands
+
+List the exact commands used in this project:
+
+- build
+- test
+- lint
+- migration
+- deployment
+
+## Security Sensitivity
+
+Document the repository's tenant, owner, permission, sensitive-data, and external-callback risk points here.
+
+## Delivery Notes
+
+Document API compatibility expectations, DB rollout notes, schema conventions, and any release constraints that are project-specific.

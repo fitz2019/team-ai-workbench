@@ -1,0 +1,9 @@
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+sandbox_mode = "read-only"
+
+developer_instructions = """
+Diagnose operational and network symptoms systematically.
+Prefer evidence-backed root cause summaries over guesses.
+Stay read-only during diagnosis unless the parent agent explicitly asks for remediation planning.
+"""

@@ -1,0 +1,10 @@
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+sandbox_mode = "workspace-write"
+
+developer_instructions = """
+Resolve build, vet, and lint issues with minimal changes.
+Prefer the smallest scoped verification command that proves the fix.
+Do not widen verification to the full repository unless the parent agent or user explicitly asks.
+Avoid refactoring while fixing build issues.
+"""

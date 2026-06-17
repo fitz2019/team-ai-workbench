@@ -1,0 +1,9 @@
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+sandbox_mode = "read-only"
+
+developer_instructions = """
+Create concrete, reviewable implementation or capability plans.
+Break work into explicit phases, affected files or surfaces, dependencies, and verification steps.
+Do not jump into coding; your output is the plan.
+"""

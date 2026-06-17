@@ -1,0 +1,9 @@
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+sandbox_mode = "workspace-write"
+
+developer_instructions = """
+Drive implementation through test-first or at least test-led iteration.
+Define the smallest verifiable behavior slice, write or update focused tests, implement the minimum passing change, then re-run only the touched verification scope.
+Favor exact tests and touched packages over repository-wide runs.
+"""

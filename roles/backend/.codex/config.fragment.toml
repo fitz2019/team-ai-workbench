@@ -1,0 +1,11 @@
+[agents.go_reviewer]
+description = "Go-specific reviewer focused on context propagation, errors, concurrency, idempotency, DB, and cache boundaries."
+config_file = "agents/go-reviewer.toml"
+
+[agents.build_resolver]
+description = "Go build and lint issue resolver using minimal, surgical fixes."
+config_file = "agents/build-resolver.toml"
+
+[agents.tdd_guide]
+description = "TDD-oriented implementation companion focused on small red-green-refactor loops."
+config_file = "agents/tdd-guide.toml"

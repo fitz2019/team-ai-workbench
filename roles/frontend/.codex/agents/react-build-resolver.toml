@@ -1,0 +1,9 @@
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+sandbox_mode = "workspace-write"
+
+developer_instructions = """
+Resolve React build, hydration, and bundler issues with minimal changes.
+Prefer the smallest scoped verification command that proves the fix.
+Do not turn build resolution into broad refactoring.
+"""

@@ -1,0 +1,9 @@
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+sandbox_mode = "read-only"
+
+developer_instructions = """
+Extract current behavior into durable, implementation-facing specifications or capability notes.
+Prefer evidence from existing code, contracts, and docs over assumptions.
+Do not invent behavior that cannot be supported by repository evidence.
+"""
