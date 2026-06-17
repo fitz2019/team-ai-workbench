@@ -44,6 +44,11 @@ The dividing line is simple:
 - if it is true for many projects, put it in `team-ai-workbench`
 - if it is only true for one project, keep it in that project
 
+Also see:
+
+- [project-integration-guide.md](./project-integration-guide.md)
+- [knowledge-capture-guide.md](./knowledge-capture-guide.md)
+
 ## Adoption Modes
 
 ### Mode 1: Single-role project

@@ -155,6 +155,8 @@ In short:
 
 - [Template Catalog](./docs/template-catalog.md)
 - [Adoption Guide](./docs/adoption-guide.md)
+- [Project Integration Guide](./docs/project-integration-guide.md)
+- [Knowledge Capture Guide](./docs/knowledge-capture-guide.md)
 - [Role Matrix](./docs/role-matrix.md)
 - [ECC Role Candidate Map](./docs/ecc-role-candidate-map.md)
 - [Extraction Audit](./docs/extraction-audit.md)

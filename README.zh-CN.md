@@ -156,6 +156,8 @@ docs/
 
 - [模板目录](./docs/template-catalog.md)
 - [团队接入指南](./docs/adoption-guide.md)
+- [项目接入指南](./docs/project-integration-guide.md)
+- [项目知识沉淀指南](./docs/knowledge-capture-guide.md)
 - [角色矩阵](./docs/role-matrix.md)
 - [ECC 候选资产映射](./docs/ecc-role-candidate-map.md)
 - [抽取审计](./docs/extraction-audit.md)
