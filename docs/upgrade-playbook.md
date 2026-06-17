@@ -10,6 +10,22 @@ Treat upgrades as deliberate merges, not re-installs.
 
 ## Safe Upgrade Process
 
+### Recommended Helper Script
+
+Use the upgrade diff helper when possible:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\upgrade-diff.ps1 -TargetProjectPath C:\path\to\repo -Template go-service
+```
+
+Or with explicit roles:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\upgrade-diff.ps1 -TargetProjectPath C:\path\to\repo -Roles backend,qa -IncludeSkills
+```
+
+The script generates a fresh scratch output from the current workbench and compares it to the existing repository's managed surfaces.
+
 ### 1. Identify the Source Layer
 
 Decide which part changed upstream:
@@ -30,6 +46,13 @@ Compare the consumer repository against the current workbench output:
 - optional `skills/`
 
 Focus on the exact role or template the project originally adopted.
+
+The helper script reports:
+
+- upstream-only files
+- changed files
+- project-local files to preserve
+- target-only managed-surface files
 
 ### 3. Protect Project-Specific Truth
 
