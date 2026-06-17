@@ -11,9 +11,13 @@ The format is intentionally simple:
 
 ## Unreleased
 
+- No unreleased entries yet.
+
+## v0.2.0
+
 ### Added
 
-- `core/ + roles/ + advanced/ + templates/` source layout
+- `core/ + roles/ + advanced/ + templates/ + scripts/ + docs/` source layout
 - production-ready role packs for:
   - `backend`
   - `frontend`
@@ -28,7 +32,7 @@ The format is intentionally simple:
   - `qa-project`
   - `feature-delivery`
   - `ops-service`
-- product-to-QA starter artifacts for `feature-delivery`
+- starter artifacts for `feature-delivery`
 - governance docs:
   - `adoption-guide.md`
   - `versioning-strategy.md`
@@ -37,6 +41,7 @@ The format is intentionally simple:
   - `role-matrix.md`
   - `template-catalog.md`
   - `ecc-role-candidate-map.md`
+  - `roadmap.md`
 
 ### Changed
 
