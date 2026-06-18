@@ -67,6 +67,7 @@ Use explicit levels when adding or interpreting rules:
 | --- | --- | --- |
 | `.agents/quick-check.md` | After this index for every task | Compact preflight and final self-check reminders |
 | `.agents/forbidden.md` | Before code generation, code modification, review, refactor, architecture suggestions | Non-negotiable red lines |
+| `.agents/coding-discipline.md` | Before code generation, code modification, review, refactor, architecture suggestions | Shared coding discipline: clarify before coding, prefer simple solutions, keep diffs surgical, and verify against explicit goals |
 | `.agents/security.md` | When touching auth, permission, tenant, owner, user, token, cookie, webhook, upload, external callback, or sensitive data | Security and data boundary rules |
 | `.agents/tech-stack.md` | When touching Go code, Redis, DB, MQ, WS, cache, concurrency, external I/O, or architecture | Technical stack and engineering practices |
 | `.agents/commands.md` | Before running shell commands, tests, formatting, build, or verification | Safe and scoped command usage |
@@ -82,11 +83,11 @@ Use this mechanical routing table before reading modules:
 | Task | Required Modules |
 | --- | --- |
 | Every task | `.agents/quick-check.md`, then task-specific modules below |
-| Code modification | `.agents/quick-check.md`, `.agents/forbidden.md`, `.agents/security.md`, `.agents/tech-stack.md`, `.agents/commands.md`, `.agents/completion.md`, `.agents/project-specific.md` |
-| Code review | `.agents/quick-check.md`, `.agents/forbidden.md`, `.agents/security.md`, `.agents/tech-stack.md`, `.agents/completion.md`, `.agents/project-specific.md` |
-| Architecture or technical plan | `.agents/quick-check.md`, `.agents/forbidden.md`, `.agents/security.md`, `.agents/tech-stack.md`, `.agents/completion.md`, `.agents/project-specific.md` |
+| Code modification | `.agents/quick-check.md`, `.agents/forbidden.md`, `.agents/coding-discipline.md`, `.agents/security.md`, `.agents/tech-stack.md`, `.agents/commands.md`, `.agents/completion.md`, `.agents/project-specific.md` |
+| Code review | `.agents/quick-check.md`, `.agents/forbidden.md`, `.agents/coding-discipline.md`, `.agents/security.md`, `.agents/tech-stack.md`, `.agents/completion.md`, `.agents/project-specific.md` |
+| Architecture or technical plan | `.agents/quick-check.md`, `.agents/forbidden.md`, `.agents/coding-discipline.md`, `.agents/security.md`, `.agents/tech-stack.md`, `.agents/completion.md`, `.agents/project-specific.md` |
 | Command-only task | `.agents/quick-check.md`, `.agents/commands.md`, `.agents/completion.md` |
-| Narrow technical question | `.agents/quick-check.md`, `.agents/forbidden.md`, `.agents/project-specific.md`; add `.agents/security.md` or `.agents/tech-stack.md` when relevant |
+| Narrow technical question | `.agents/quick-check.md`, `.agents/forbidden.md`, `.agents/project-specific.md`; add `.agents/coding-discipline.md`, `.agents/security.md`, or `.agents/tech-stack.md` when relevant |
 | Redis, DB, MQ, WS, worker, cache, concurrency, or external I/O | `.agents/tech-stack.md` |
 | Auth, permission, tenant, owner, user, token, cookie, webhook, upload, or sensitive data | `.agents/security.md` |
 | Final response, completion claim, or review output | `.agents/completion.md` |

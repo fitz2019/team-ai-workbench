@@ -48,6 +48,7 @@ Also see:
 
 - [project-integration-guide.md](./project-integration-guide.md)
 - [knowledge-capture-guide.md](./knowledge-capture-guide.md)
+- [local-backport-playbook.md](./local-backport-playbook.md)
 
 ## Adoption Modes
 
@@ -171,6 +172,8 @@ Collect friction:
 When a change is reusable, move it back into `team-ai-workbench`.
 
 When it is project-only, keep it local.
+
+Use [local-backport-playbook.md](./local-backport-playbook.md) instead of relying on memory or chat history for the promotion process.
 
 ### Stage 4: Expand to more repositories
 

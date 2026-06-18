@@ -11,6 +11,7 @@
 它解决的不是“某个人怎么写 prompt”，而是：
 
 - 多个项目怎么共享一套 AI 协作方式
+- 怎么共享一套编码纪律：先澄清、再编码，优先简单解法，控制改动范围，并用明确验证标准收口
 - 后端、前端、产品、QA、运维怎么按角色接入
 - 新项目怎么快速落一套规则、角色和模板
 - 团队经验怎么沉淀成可复用资产
@@ -161,12 +162,15 @@ docs/
 这套 workbench 的很多思路和部分能力来源，都参考了 [ECC](https://github.com/affaan-m/ECC)。  
 我们的做法不是原样照搬，而是把 ECC 作为上游能力源和结构参考，再结合我们自己的工程规范，整理成更适合团队长期落地和维护的版本。
 
+同时，`core` 里的共享编码纪律也参考了 [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) 这类思路，但我们没有直接原样落，而是按团队工作台的结构做了本地化改造。
+
 ## 文档入口
 
 - [模板目录](./docs/template-catalog.md)
 - [团队接入指南](./docs/adoption-guide.md)
 - [项目接入指南](./docs/project-integration-guide.md)
 - [项目知识沉淀指南](./docs/knowledge-capture-guide.md)
+- [本地回灌流程](./docs/local-backport-playbook.md)
 - [角色矩阵](./docs/role-matrix.md)
 - [ECC 候选资产映射](./docs/ecc-role-candidate-map.md)
 - [抽取审计](./docs/extraction-audit.md)

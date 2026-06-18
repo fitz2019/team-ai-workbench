@@ -11,6 +11,7 @@ English | [简体中文](./README.zh-CN.md)
 It is designed for teams that want:
 
 - one shared AI operating model across repositories
+- one shared coding discipline: clarify before coding, prefer simple solutions, keep diffs surgical, and verify against explicit success criteria
 - role-specific guidance for backend, frontend, product, QA, and DevOps
 - repeatable project setup instead of one-off prompt craftsmanship
 - a filtered downstream workbench built from ECC ideas and assets, not a raw ECC copy
@@ -160,12 +161,15 @@ In short:
 This workbench is informed by ideas and assets from [ECC](https://github.com/affaan-m/ECC).  
 We use ECC as an upstream capability source and structure reference, then curate and adapt it to fit our own engineering standards and team operating model.
 
+It is also informed by the coding-discipline framing popularized in [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills), adapted here into the shared `core` baseline instead of being used as a raw drop-in.
+
 ## Governance Docs
 
 - [Template Catalog](./docs/template-catalog.md)
 - [Adoption Guide](./docs/adoption-guide.md)
 - [Project Integration Guide](./docs/project-integration-guide.md)
 - [Knowledge Capture Guide](./docs/knowledge-capture-guide.md)
+- [Local Backport Playbook](./docs/local-backport-playbook.md)
 - [Role Matrix](./docs/role-matrix.md)
 - [ECC Role Candidate Map](./docs/ecc-role-candidate-map.md)
 - [Extraction Audit](./docs/extraction-audit.md)

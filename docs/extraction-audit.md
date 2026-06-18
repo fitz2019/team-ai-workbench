@@ -60,6 +60,9 @@ Local reusable skills promoted from `backend/.codex/skills`:
 
 - `skills/systematic-debugging`
 - `skills/verification-before-completion`
+- `core/.agents/coding-discipline.md`
+- `core/skills/coding-discipline`
+- `roles/backend/skills/test-driven-development`
 
 ## Still Project-Local
 
@@ -71,17 +74,21 @@ These should remain in each project repository:
 - schema and release specifics
 - API compatibility notes tied to one product
 - repository-specific examples that leak business semantics
+- strongly tool-specific bootstrap behavior such as `using-superpowers`
+- local skill-authoring helpers such as `writing-skills` until contributor workflow is formalized
 
 ## Optional Next Extraction Candidates
 
 Useful but not yet promoted into the shared layer:
-- `.codex/skills/test-driven-development`
-- `.codex/skills/receiving-code-review`
-- `.codex/skills/requesting-code-review`
+- none in the current high-confidence local set
 
 Promoted into `advanced/` instead of the default baseline:
 
 - `advanced/writing-plans`
+- `advanced/executing-plans`
+- `advanced/finishing-a-development-branch`
+- `advanced/requesting-code-review`
+- `advanced/receiving-code-review`
 - `advanced/dispatching-parallel-agents`
 - `advanced/subagent-driven-development`
 - `advanced/using-git-worktrees`
@@ -93,3 +100,26 @@ Reason they are not in the default baseline:
 - they are workflow-heavy and require team process alignment
 - they change operating style, not only coding style
 - some overlap with current `.codex/agents` and verification conventions
+
+## Triaged Local `.codex/skills`
+
+Current decision for `C:\software\backend\.codex\skills`:
+
+- already absorbed into `core/`:
+  - `systematic-debugging`
+  - `verification-before-completion`
+  - `coding-discipline` (adapted from local experience plus Karpathy-style discipline)
+- already absorbed into `advanced/`:
+  - `writing-plans`
+  - `executing-plans`
+  - `finishing-a-development-branch`
+  - `requesting-code-review`
+  - `receiving-code-review`
+  - `dispatching-parallel-agents`
+  - `subagent-driven-development`
+  - `using-git-worktrees`
+- keep local for now:
+  - `using-superpowers`
+  - `writing-skills`
+  - `brainstorming`
+- no untriaged high-confidence `.codex/skills` remain in the current local backend set

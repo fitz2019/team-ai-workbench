@@ -58,3 +58,8 @@ Load this file before code generation, code modification, code review, refactor,
 ## Required Tradeoff Note
 
 If a security rule cannot be applied because of stable repository compatibility or legacy behavior, preserve behavior only when necessary and state the reason, residual risk, and lower-risk follow-up.
+
+## Security Workflow Note
+
+- For auth, permission, webhook, file upload, or other clearly security-sensitive changes, prefer loading the shared `skills/security-review` surface when it clearly applies.
+- If a security-sensitive change also requires release notes, incident notes, or runbook updates, summarize the change safely without including secrets, raw payloads, tokens, private keys, or exploit details.
