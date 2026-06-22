@@ -43,8 +43,8 @@ Bring in:
 
 - `AGENTS.md`
 - `.agents/`
+- `.agents/skills/`
 - `.codex/`
-- optional `skills/`
 - template starter docs when the template provides them
 
 ## What To Keep Project-Local

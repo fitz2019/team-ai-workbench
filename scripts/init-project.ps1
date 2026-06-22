@@ -123,7 +123,7 @@ Copy-PathSafe -Source (Join-Path $sourceRoot "core\.codex") -Destination (Join-P
 if ($IncludeSkills) {
     $coreSkills = Join-Path $sourceRoot "core\skills"
     if (Test-Path -LiteralPath $coreSkills) {
-        Copy-PathSafe -Source $coreSkills -Destination (Join-Path $targetRoot "skills")
+        Copy-PathSafe -Source $coreSkills -Destination (Join-Path $targetRoot ".agents\skills")
     }
 }
 
@@ -161,7 +161,7 @@ foreach ($role in $resolvedRoles) {
     }
 
     if ($IncludeSkills -and (Test-Path -LiteralPath $roleSkills)) {
-        $targetSkills = Join-Path $targetRoot "skills"
+        $targetSkills = Join-Path $targetRoot ".agents\skills"
         if (-not (Test-Path -LiteralPath $targetSkills)) {
             New-Item -ItemType Directory -Path $targetSkills -Force | Out-Null
         }
