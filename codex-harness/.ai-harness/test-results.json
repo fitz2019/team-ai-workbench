@@ -1,0 +1,7 @@
+{
+  "bootstrap": {
+    "passes": false,
+    "evidence": [],
+    "notes": "Replace this bootstrap criterion with real acceptance criteria before enabling .ai-harness/ACTIVE."
+  }
+}

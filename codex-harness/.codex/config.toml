@@ -1,0 +1,79 @@
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+web_search = "live"
+
+persistent_instructions = "This repository is managed by the Team AI Workbench Codex harness. Start from AGENTS.md, route through .agents/index.md, and use .ai-harness files when long-running mode is active."
+
+[features]
+hooks = true
+multi_agent = true
+
+[agents]
+max_threads = 4
+max_depth = 1
+
+[agents.explorer]
+description = "Read-only codebase explorer for evidence gathering."
+config_file = "agents/explorer.toml"
+
+[agents.reviewer]
+description = "General reviewer focused on correctness, regressions, security boundaries, and missing verification."
+config_file = "agents/reviewer.toml"
+
+[agents.docs_researcher]
+description = "Documentation specialist that verifies APIs, libraries, and release-note claims against primary docs."
+config_file = "agents/docs-researcher.toml"
+
+[agents.security_reviewer]
+description = "Security review role for auth, input handling, secrets, and sensitive flows."
+config_file = "agents/security-reviewer.toml"
+
+[agents.harness_builder]
+description = "Long-running implementation worker that follows BUILD_PLAN, PROGRESS, and role rules."
+config_file = "agents/harness-builder.toml"
+
+[agents.harness_evaluator]
+description = "Fresh-context evaluator for long-running work. Starts with PASS or NEEDS_WORK."
+config_file = "agents/harness-evaluator.toml"
+
+[agents.progress_keeper]
+description = "Maintains durable progress, steering, and knowledge-capture files without changing product code."
+config_file = "agents/progress-keeper.toml"
+
+[[hooks.SessionStart]]
+matcher = "startup|resume|clear|compact"
+
+[[hooks.SessionStart.hooks]]
+type = "command"
+command = "sh -lc 'root=$(git rev-parse --show-toplevel 2>/dev/null || pwd); pwsh -NoProfile -ExecutionPolicy Bypass -File \"$root/.codex/hooks/session-start.ps1\"'"
+command_windows = "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$root = git rev-parse --show-toplevel 2>$null; if (-not $root) { $root = (Get-Location).Path }; & (Join-Path $root '.codex\\hooks\\session-start.ps1')\""
+timeout = 10
+statusMessage = "Loading Team AI Workbench harness"
+
+[[hooks.UserPromptSubmit]]
+
+[[hooks.UserPromptSubmit.hooks]]
+type = "command"
+command = "sh -lc 'root=$(git rev-parse --show-toplevel 2>/dev/null || pwd); pwsh -NoProfile -ExecutionPolicy Bypass -File \"$root/.codex/hooks/user-prompt-submit.ps1\"'"
+command_windows = "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$root = git rev-parse --show-toplevel 2>$null; if (-not $root) { $root = (Get-Location).Path }; & (Join-Path $root '.codex\\hooks\\user-prompt-submit.ps1')\""
+timeout = 10
+statusMessage = "Checking harness steering"
+
+[[hooks.PreToolUse]]
+matcher = "Bash|apply_patch|Edit|Write"
+
+[[hooks.PreToolUse.hooks]]
+type = "command"
+command = "sh -lc 'root=$(git rev-parse --show-toplevel 2>/dev/null || pwd); pwsh -NoProfile -ExecutionPolicy Bypass -File \"$root/.codex/hooks/pre-tool-use-policy.ps1\"'"
+command_windows = "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$root = git rev-parse --show-toplevel 2>$null; if (-not $root) { $root = (Get-Location).Path }; & (Join-Path $root '.codex\\hooks\\pre-tool-use-policy.ps1')\""
+timeout = 10
+statusMessage = "Checking harness guardrails"
+
+[[hooks.Stop]]
+
+[[hooks.Stop.hooks]]
+type = "command"
+command = "sh -lc 'root=$(git rev-parse --show-toplevel 2>/dev/null || pwd); pwsh -NoProfile -ExecutionPolicy Bypass -File \"$root/.codex/hooks/stop-gate.ps1\"'"
+command_windows = "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$root = git rev-parse --show-toplevel 2>$null; if (-not $root) { $root = (Get-Location).Path }; & (Join-Path $root '.codex\\hooks\\stop-gate.ps1')\""
+timeout = 15
+statusMessage = "Checking long-running harness gate"

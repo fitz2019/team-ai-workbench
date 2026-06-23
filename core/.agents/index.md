@@ -42,16 +42,23 @@ Within loaded modules:
 
 `.agents/` is the shared baseline rule system. Keep it generic by default.
 
-Do not convert these rules into a Codex skill unless the same workflow is repeatedly useful across multiple repositories.
+`.agents/skills/` is the canonical repository skill surface. Legacy `.codex/skills/` can exist in older projects, but it is not the primary rule source.
+
+Do not convert these rules into a Codex skill unless the same workflow is repeatedly useful across multiple repositories, such as:
+
+- `go-backend-review`
+- `redis-cache-consistency`
+- `backend-release-check`
+- `security-boundary-review`
 
 ## Rule Growth
 
 Do not add broad, all-purpose rules just to make the system look complete. Add or change rules only when they:
 
-- Reflect a real project pain or repeated review issue
-- Prevent a concrete production, security, data consistency, or delivery risk
-- Fit an existing focused module, or justify a new module with a clear load condition
-- Keep context small enough for agents to apply reliably
+- Reflect a real project pain or repeated review issue.
+- Prevent a concrete production, security, data consistency, or delivery risk.
+- Fit an existing focused module, or justify a new module with a clear load condition.
+- Keep context small enough for agents to apply reliably.
 
 ## Rule Levels
 
@@ -73,6 +80,7 @@ Use explicit levels when adding or interpreting rules:
 | `.agents/commands.md` | Before running shell commands, tests, formatting, build, or verification | Safe and scoped command usage |
 | `.agents/completion.md` | Before claiming completion, sending review output, or finalizing work | Verification and final response criteria |
 | `.agents/project-specific.md` | Whenever project behavior, docs, API, DB, or business logic is touched | Repository-specific conventions |
+| `.agents/harness-runtime.md` | When `.ai-harness/ACTIVE` exists or the task is about long-running agent work | Codex harness runtime rules, handoff, steering, and evidence contract |
 | `.agents/examples.md` | When an implementation example helps | Index for optional reference snippets |
 | `.agents/examples/*` | After `.agents/examples.md`, load only the relevant example file | Focused implementation examples |
 
@@ -88,6 +96,7 @@ Use this mechanical routing table before reading modules:
 | Architecture or technical plan | `.agents/quick-check.md`, `.agents/forbidden.md`, `.agents/coding-discipline.md`, `.agents/security.md`, `.agents/tech-stack.md`, `.agents/completion.md`, `.agents/project-specific.md` |
 | Command-only task | `.agents/quick-check.md`, `.agents/commands.md`, `.agents/completion.md` |
 | Narrow technical question | `.agents/quick-check.md`, `.agents/forbidden.md`, `.agents/project-specific.md`; add `.agents/coding-discipline.md`, `.agents/security.md`, or `.agents/tech-stack.md` when relevant |
+| Long-running harness task | `.agents/quick-check.md`, `.agents/harness-runtime.md`, `.agents/forbidden.md`, `.agents/coding-discipline.md`, `.agents/security.md`, `.agents/tech-stack.md`, `.agents/commands.md`, `.agents/completion.md`, `.agents/project-specific.md` |
 | Redis, DB, MQ, WS, worker, cache, concurrency, or external I/O | `.agents/tech-stack.md` |
 | Auth, permission, tenant, owner, user, token, cookie, webhook, upload, or sensitive data | `.agents/security.md` |
 | Final response, completion claim, or review output | `.agents/completion.md` |
@@ -95,17 +104,17 @@ Use this mechanical routing table before reading modules:
 
 ## Repository Compatibility
 
-- Preserve existing behavior unless the user explicitly asks to change it
-- Prefer local repository patterns over new abstractions
-- Keep changes scoped to the requested behavior
-- Do not clean up unrelated historical issues just because they violate a preference
-- When a preference conflicts with stable local behavior, explain the tradeoff and choose the lower-risk path
+- Preserve existing behavior unless the user explicitly asks to change it.
+- Prefer local repository patterns over new abstractions.
+- Keep changes scoped to the requested behavior.
+- Do not clean up unrelated historical issues just because they violate a preference.
+- When a preference conflicts with stable local behavior, explain the tradeoff and choose the lower-risk path.
 
 ## Working Loop
 
-1. Understand the request and inspect relevant files
-2. Load the modules required by the task
-3. Make the smallest safe change
-4. Verify the touched scope only: exact target tests first, then full tests only for touched packages when needed
-5. Report changes, verification, and residual risk
-6. If a "when practical" or "when possible" preference was intentionally not followed, state the compatibility reason and tradeoff
+1. Understand the request and inspect relevant files.
+2. Load the modules required by the task.
+3. Make the smallest safe change.
+4. Verify the touched scope only: exact target tests first, then full tests only for touched packages when needed.
+5. Report changes, verification, and residual risk.
+6. If a "when practical" or "when possible" preference was intentionally not followed, state the compatibility reason and tradeoff.
