@@ -12,12 +12,14 @@ This file supplements the root `AGENTS.md`.
 
 - `.codex/config.toml` defines project-local Codex runtime defaults.
 - `.codex/agents/*.toml` defines helper roles for multi-agent workflows.
+- `.agents/skills/` is the official repository skill discovery surface.
 - Local `.codex/skills/` are optional capability packs, not the primary rule source.
-- Root `agents/` and `skills/` can be treated as the curated ECC-derived library for reusable agent and workflow patterns.
+- Root `agents/` and `.agents/skills/` can be treated as the curated reusable library for agent and workflow patterns.
 
 ## Default Operating Mode
 
 - For code, review, debugging, or architecture tasks, route through `.agents/index.md` first.
+- For non-trivial coding work, include `.agents/coding-discipline.md` in the default module set.
 - Load only the `.agents/*.md` modules required by the task.
 - Prefer targeted verification over repository-wide checks.
-- Preserve existing Go backend patterns for context propagation, error handling, logging, DB access, Redis/cache, and concurrency.
+- Preserve existing repository patterns for layering, context propagation, error handling, logging, tests, and external I/O.

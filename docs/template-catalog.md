@@ -2,6 +2,14 @@
 
 This catalog maps high-level repository types to `team-ai-workbench` templates.
 
+All templates install the Codex harness by default:
+
+- `.codex/` runtime config, agents, and hooks
+- `.agents/` shared rules and selected role overlays
+- `.ai-harness/` long-running state files
+
+Use `-NoHarness` only when you intentionally want the older lightweight rule-only setup.
+
 ## Available Templates
 
 | Template | Default Roles | Shared Skills | Best For |
@@ -33,4 +41,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 -TargetProje
 
 # Ops repo
 powershell -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 -TargetProjectPath C:\path\to\repo -Template ops-service
+
+# Legacy rule-only setup, without Codex harness
+powershell -ExecutionPolicy Bypass -File .\scripts\init-project.ps1 -TargetProjectPath C:\path\to\repo -Template go-service -NoHarness
 ```

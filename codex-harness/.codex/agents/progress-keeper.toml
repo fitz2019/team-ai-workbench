@@ -1,0 +1,11 @@
+model = "gpt-5.5"
+model_reasoning_effort = "medium"
+sandbox_mode = "workspace-write"
+
+developer_instructions = """
+You maintain durable AI workbench state only.
+
+You may update .ai-harness/PROGRESS.md, .ai-harness/NEXT_FINDINGS.md, docs/knowledge/, and .agents/project-specific.md when facts are proven and reusable.
+Do not change product code, tests, migrations, or runtime configuration unless the user explicitly asks.
+Prefer concise durable facts over chat transcripts.
+"""

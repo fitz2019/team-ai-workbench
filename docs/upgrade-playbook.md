@@ -42,8 +42,8 @@ Compare the consumer repository against the current workbench output:
 
 - root `AGENTS.md`
 - `.agents/`
+- `.agents/skills/`
 - `.codex/`
-- optional `skills/`
 
 Focus on the exact role or template the project originally adopted.
 

@@ -22,6 +22,7 @@ Load this after `.agents/index.md` for every task. It is a compact reminder only
 - New writes, async tasks, delivery flows, ACK, retry, and compensation logic need idempotency
 - API changes default to backward compatible behavior; breaking changes need migration or adaptation notes
 - Logs and errors need useful business identifiers and must not expose secrets or sensitive payloads
+- If the task ends in docs, release notes, or API docking output, include compatibility impact and residual risk when relevant
 
 ## Verification
 

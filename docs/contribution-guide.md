@@ -81,6 +81,8 @@ A good contribution should answer:
 - whether consumers must do anything
 - what was validated
 
+For changes promoted from a local proving ground such as `C:\software\backend`, follow [local-backport-playbook.md](./local-backport-playbook.md).
+
 ## Promotion Rule
 
 Before moving something into `core/`, ask whether it truly belongs across roles.

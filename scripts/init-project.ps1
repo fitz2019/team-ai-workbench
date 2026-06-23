@@ -5,6 +5,7 @@ param(
     [string]$Template,
     [switch]$IncludeSkills,
     [switch]$IncludeAdvanced,
+    [switch]$NoHarness,
     [switch]$Force
 )
 
@@ -116,14 +117,45 @@ function Copy-PathSafe {
     Write-Host "copied: $Destination"
 }
 
+function Merge-DirectoryContents {
+    param(
+        [string]$Source,
+        [string]$Destination
+    )
+
+    if (-not (Test-Path -LiteralPath $Source)) {
+        return
+    }
+
+    if (-not (Test-Path -LiteralPath $Destination)) {
+        New-Item -ItemType Directory -Path $Destination -Force | Out-Null
+    }
+
+    Get-ChildItem -LiteralPath $Source -Force | ForEach-Object {
+        Copy-PathSafe -Source $_.FullName -Destination (Join-Path $Destination $_.Name)
+    }
+}
+
+$harnessRoot = Join-Path $sourceRoot "codex-harness"
+
+if (-not $NoHarness) {
+    Copy-PathSafe -Source (Join-Path $harnessRoot ".codex") -Destination (Join-Path $targetRoot ".codex")
+    Copy-PathSafe -Source (Join-Path $harnessRoot ".agents") -Destination (Join-Path $targetRoot ".agents")
+    Copy-PathSafe -Source (Join-Path $harnessRoot ".ai-harness") -Destination (Join-Path $targetRoot ".ai-harness")
+}
+
 Copy-PathSafe -Source (Join-Path $sourceRoot "core\AGENTS.md") -Destination (Join-Path $targetRoot "AGENTS.md")
-Copy-PathSafe -Source (Join-Path $sourceRoot "core\.agents") -Destination (Join-Path $targetRoot ".agents")
-Copy-PathSafe -Source (Join-Path $sourceRoot "core\.codex") -Destination (Join-Path $targetRoot ".codex")
+
+Merge-DirectoryContents -Source (Join-Path $sourceRoot "core\.agents") -Destination (Join-Path $targetRoot ".agents")
+
+if ($NoHarness) {
+    Copy-PathSafe -Source (Join-Path $sourceRoot "core\.codex") -Destination (Join-Path $targetRoot ".codex")
+}
 
 if ($IncludeSkills) {
     $coreSkills = Join-Path $sourceRoot "core\skills"
     if (Test-Path -LiteralPath $coreSkills) {
-        Copy-PathSafe -Source $coreSkills -Destination (Join-Path $targetRoot "skills")
+        Copy-PathSafe -Source $coreSkills -Destination (Join-Path $targetRoot ".agents\skills")
     }
 }
 
@@ -161,7 +193,7 @@ foreach ($role in $resolvedRoles) {
     }
 
     if ($IncludeSkills -and (Test-Path -LiteralPath $roleSkills)) {
-        $targetSkills = Join-Path $targetRoot "skills"
+        $targetSkills = Join-Path $targetRoot ".agents\skills"
         if (-not (Test-Path -LiteralPath $targetSkills)) {
             New-Item -ItemType Directory -Path $targetSkills -Force | Out-Null
         }
@@ -198,8 +230,17 @@ if ($Template) {
     Write-Host "Template docs: templates\\$Template\\README.md"
 }
 Write-Host "Roles: $($resolvedRoles -join ', ')"
+if (-not $NoHarness) {
+    Write-Host "Harness: codex-harness"
+}
 Write-Host "Next:"
 Write-Host "1. Edit .agents\\project-specific.md"
 Write-Host "2. Fill in real commands, business vocabulary, and security notes"
 Write-Host "3. If using a template, read the template README and sample project-specific file"
-Write-Host "4. Open the project with codex and run a small dry-run task"
+if (-not $NoHarness) {
+    Write-Host "4. Fill .ai-harness\\BUILD_PLAN.md when a long-running task needs durable state"
+    Write-Host "5. Open the project with codex and run /hooks once to review project-local hooks"
+    Write-Host "6. Start with a small dry-run task before enabling .ai-harness\\ACTIVE"
+} else {
+    Write-Host "4. Open the project with codex and run a small dry-run task"
+}

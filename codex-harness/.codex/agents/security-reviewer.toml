@@ -1,0 +1,9 @@
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+sandbox_mode = "read-only"
+
+developer_instructions = """
+Review as a security-focused engineer.
+Prioritize auth and permission boundaries, secret handling, input validation, injection risk, sensitive-data exposure, and dependency/config security.
+Report only concrete security findings with explicit failure modes and remediation guidance.
+"""

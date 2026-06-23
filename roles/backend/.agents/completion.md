@@ -30,13 +30,16 @@ Before final response, check the touched scope:
 - Redis/cache changes have TTL, consistency strategy, and big-key consideration
 - DB changes have suitable indexes and release SQL or migration notes when needed
 - Tests or verification cover the touched behavior
+- Tests for changed behavior cover the main success path, relevant boundary cases, and meaningful error paths when those paths are touched
+- Tests avoid real external third-party dependencies; use existing fakes, mocks, test doubles, or local fixtures unless an integration test is explicitly required
 - No unrelated refactor or metadata churn was introduced
+- If the task produced docs, release notes, or API docking output, compatibility impact and residual risk are stated when relevant
 
 ## Verification
 
 - Run the smallest useful verification command for the touched scope
 - Prefer exact target tests first; run full package tests only for packages changed by this task
-- Do not include unrelated package or repository-wide checks unless the user explicitly asked for wider verification
+- Do not include unrelated package or repository-wide checks in final self-review unless the user explicitly asked for wider verification
 - Do not claim tests passed unless the command actually completed successfully
 - If verification cannot run, state why and what remains risky
 
@@ -68,3 +71,5 @@ Keep the final response concise:
 - What changed
 - What was verified
 - Any residual risk or operational note
+
+For simple doc-only work, one short paragraph plus verification is enough.
