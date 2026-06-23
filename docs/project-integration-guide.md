@@ -4,10 +4,11 @@ This guide explains how to connect a real repository to `team-ai-workbench` with
 
 ## Core Idea
 
-Use `team-ai-workbench` as an **upstream source**, not as a runtime dependency.
+Use `team-ai-workbench` as an **upstream harness source**, not as a runtime dependency.
 
 A consumer repository should receive:
 
+- generated Codex harness files
 - generated rules
 - generated role overlays
 - generated template starter files
@@ -42,9 +43,10 @@ Instead:
 Bring in:
 
 - `AGENTS.md`
-- `.agents/`
 - `.codex/`
-- optional `skills/`
+- `.agents/`
+- `.agents/skills/`
+- `.ai-harness/`
 - template starter docs when the template provides them
 
 ## What To Keep Project-Local
@@ -63,10 +65,33 @@ Keep these in the project repository:
 A repository is successfully integrated when:
 
 - `AGENTS.md` exists
+- `.codex/config.toml` exists and `/hooks` has been reviewed in Codex
 - `.agents/project-specific.md` is filled in
-- `.codex/config.toml` loads without errors
+- `.ai-harness/BUILD_PLAN.md` and `.ai-harness/PROGRESS.md` exist
 - the chosen role or template matches the repository's actual work
 - one real task has been completed using the generated setup
+
+## Long-running Harness
+
+Do not enable long-running mode immediately for every task.
+
+Use it when the task needs durable state:
+
+```powershell
+New-Item -ItemType File .\.ai-harness\ACTIVE -Force
+```
+
+If the team wants the Stop hook to continue until evidence passes:
+
+```powershell
+New-Item -ItemType File .\.ai-harness\CONTINUE_ON_STOP -Force
+```
+
+To pause:
+
+```powershell
+New-Item -ItemType File .\.ai-harness\AGENT_STOP -Force
+```
 
 ## Upgrade Rule
 

@@ -2,7 +2,9 @@
 
 This directory contains optional workflow-heavy capabilities.
 
-These are not part of the default baseline because they change how a team organizes work, not just how code is written.
+These are not the main harness. The main runtime architecture now lives in `codex-harness/`.
+
+This directory contains optional add-on workflows because they change how a team organizes work, not just how code is written.
 
 Current advanced skills:
 

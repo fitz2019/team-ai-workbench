@@ -24,9 +24,31 @@ Before generating, modifying, or reviewing code, tests, architecture, or technic
 
 `.agents/` is the workspace rule system. Do not convert it into a Codex skill by default; extract a separate skill only when the same workflow becomes useful across multiple repositories.
 
-The preferred shared local skill surface for this workspace is the repository root `skills/` directory.
+The preferred shared local skill surface for this workspace is `.agents/skills/`, which is Codex's official repository skill discovery surface.
 Existing `.codex/skills/` remains available as a legacy local capability pack and does not replace `.agents/` as the rule source.
-The shared `skills/coding-discipline/` skill is available when an explicit reusable reminder is helpful, but `.agents/coding-discipline.md` remains the default rule path.
+The shared `.agents/skills/coding-discipline/` skill is available when an explicit reusable reminder is helpful, but `.agents/coding-discipline.md` remains the default rule path.
+
+## Codex Harness
+
+Generated projects can include the Team AI Workbench Codex harness:
+
+```text
+.codex/hooks/
+.codex/agents/harness-*.toml
+.agents/harness-runtime.md
+.ai-harness/
+```
+
+Normal small tasks should still follow the regular `.agents/` route.
+
+Only enter harness mode when `.ai-harness/ACTIVE` exists. In harness mode:
+
+1. Read `.agents/harness-runtime.md`.
+2. Read `.ai-harness/BUILD_PLAN.md`, `.ai-harness/PROGRESS.md`, `.ai-harness/STEER.md`, `.ai-harness/EVALUATOR_RUBRIC.md`, and `.ai-harness/test-results.json`.
+3. Work on one bounded item at a time.
+4. Keep `.ai-harness/PROGRESS.md` current.
+5. Keep `.ai-harness/test-results.json` default-fail until real evidence exists.
+6. Use `harness_evaluator` before claiming a long-running item is complete.
 
 ## Loading Shortcut
 
@@ -38,6 +60,7 @@ Use this shortcut when deciding what to read:
 - Code change: `.agents/forbidden.md`, `.agents/coding-discipline.md`, `.agents/security.md`, role-specific stack modules, `.agents/commands.md`, `.agents/completion.md`, `.agents/project-specific.md`
 - Code review: `.agents/forbidden.md`, `.agents/coding-discipline.md`, `.agents/security.md`, role-specific stack modules, `.agents/completion.md`, `.agents/project-specific.md`
 - Auth, permission, tenant, owner, user, token, cookie, webhook, upload, or sensitive data: `.agents/security.md`
+- Long-running harness task: `.agents/harness-runtime.md`, then the normal task-specific modules
 - Running tests, formatting, search, build, or verification commands: `.agents/commands.md`, `.agents/completion.md`
 - Need implementation examples: `.agents/examples.md`, then the specific file under `.agents/examples/`
 
