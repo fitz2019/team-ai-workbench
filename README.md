@@ -80,6 +80,109 @@ Use a small dry-run task first:
 - narrow bug analysis
 - one small change with scoped verification
 
+## Conversation Examples
+
+### Analyze a bug
+
+```text
+Read the current project's AGENTS.md, .agents/index.md, .agents/project-specific.md, and the code related to this issue.
+
+I need to analyze a bug:
+【symptom】
+【reproduction steps】
+【expected result】
+【actual result】
+【logs/screenshots/API/user feedback】
+
+Requirements:
+1. Do not edit code yet.
+2. Locate the relevant modules, call chain, and key data flow first.
+3. Separate confirmed facts, hypotheses, and open verification questions.
+4. Rank the most likely root causes.
+5. Propose the smallest useful verification plan, including files to inspect, commands to run, and tests to add.
+6. If code changes are needed, propose a narrow fix plan first.
+```
+
+### Add a feature
+
+```text
+Read the current project's AGENTS.md, .agents/index.md, .agents/project-specific.md, and the code related to this requirement.
+
+I need to add a feature:
+【background】
+【user/business scenario】
+【rules】
+【inputs and outputs】
+【edge cases】
+【compatibility requirements】
+【acceptance criteria】
+
+Requirements:
+1. Do not edit code immediately; propose the approach first.
+2. Find similar existing implementations and reuse project patterns.
+3. List which files need changes and why.
+4. Explain whether DB, cache, messaging, permissions, idempotency, or compatibility are affected.
+5. Split the task into small independently verifiable steps.
+6. Implement only after the approach is confirmed.
+7. Keep the implementation scoped and run the necessary verification.
+```
+
+### Long-running task: plan first, then execute
+
+For projects that already have `.ai-harness/`, use a two-step conversation flow. The human should not have to maintain control files manually during normal use.
+
+Step 1, generate the plan without implementation:
+
+```text
+This is a larger development task. Do not edit product code yet.
+
+Read the project rules and relevant code, then create or update .ai-harness/BUILD_PLAN.md.
+
+Requirement:
+【your requirement】
+
+The plan must include:
+1. goals and non-goals
+2. affected modules
+3. task breakdown, with each task as a bounded item
+4. verification for each step
+5. risks, rollback points, and compatibility requirements
+
+Stop after writing the plan. Do not start coding.
+```
+
+Step 2, let Codex initialize and execute the long-running harness:
+
+```text
+Now execute the long-running task according to .ai-harness/BUILD_PLAN.md.
+
+Initialize the long-running harness yourself:
+1. If .ai-harness/ACTIVE does not exist, create it.
+2. Read BUILD_PLAN.md, PROGRESS.md, STEER.md, EVALUATOR_RUBRIC.md, and test-results.json.
+3. Execute only one bounded item at a time.
+4. Update PROGRESS.md and test-results.json after each round.
+5. Do not mark an acceptance item as passed without real verification evidence.
+6. Use subagents such as harness_builder, harness_evaluator, go_reviewer, or security_reviewer when useful.
+7. Do not let multiple builders edit the same files at the same time.
+8. After all acceptance criteria pass, remove .ai-harness/ACTIVE and provide the final summary.
+
+Start with the first item in BUILD_PLAN.md.
+```
+
+Pause, resume, and finish through conversation too:
+
+```text
+Pause the current long-running task. Create .ai-harness/AGENT_STOP and update PROGRESS.md with the current state and next resume point.
+```
+
+```text
+Resume the long-running task. Remove .ai-harness/AGENT_STOP, read PROGRESS.md and STEER.md, then continue from the next unfinished item.
+```
+
+```text
+Finish the long-running task. Confirm PROGRESS.md and test-results.json are updated, remove .ai-harness/ACTIVE, and summarize completed work, evidence, and remaining risks.
+```
+
 ## Why Teams Use This
 
 Without a shared workbench, teams usually end up with:

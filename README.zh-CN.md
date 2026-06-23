@@ -78,6 +78,109 @@ codex
 - 窄范围 bug 分析
 - 一次小改动 + 局部验证
 
+## 常用对话示例
+
+### 分析 bug
+
+```text
+阅读当前项目的 AGENTS.md、.agents/index.md、.agents/project-specific.md，以及和问题相关的代码。
+
+我要分析一个 bug：
+【描述现象】
+【复现步骤】
+【期望结果】
+【实际结果】
+【相关日志/截图/接口/用户反馈】
+
+要求：
+1. 先不要改代码。
+2. 先定位涉及的模块、调用链和关键数据流。
+3. 区分确定事实、推测原因和还需要验证的问题。
+4. 给出最可能的根因排序。
+5. 给出最小验证方案，包括要看的文件、要跑的命令、要补的测试。
+6. 如果需要改代码，先给我一个改动范围很小的修复方案。
+```
+
+### 加需求
+
+```text
+阅读当前项目的 AGENTS.md、.agents/index.md、.agents/project-specific.md，以及和需求相关的代码。
+
+我要加一个需求：
+【需求背景】
+【用户/业务场景】
+【具体规则】
+【输入输出】
+【边界条件】
+【兼容性要求】
+【验收标准】
+
+要求：
+1. 先不要直接改代码，先做方案。
+2. 找出现有相似实现，优先复用项目已有模式。
+3. 明确需要改哪些文件、为什么改。
+4. 说明数据库、缓存、消息、权限、幂等、兼容性是否受影响。
+5. 把任务拆成小步骤，每一步都要能单独验证。
+6. 方案确认后再实现。
+7. 实现时保持改动范围收窄，完成后跑必要验证。
+```
+
+### 长任务：先计划，再执行
+
+如果项目已经接入 `.ai-harness/`，长任务推荐用两步对话，不需要人手动维护控制文件。
+
+第一步，只生成计划，不执行：
+
+```text
+这是一个较大的开发任务。先不要改业务代码。
+
+请阅读项目规则和相关代码，然后生成或更新 .ai-harness/BUILD_PLAN.md。
+
+需求是：
+【你的需求】
+
+计划里要包含：
+1. 目标和非目标
+2. 涉及模块
+3. 任务拆分，每个任务都是 bounded item
+4. 每一步验证方式
+5. 风险、回滚点和兼容性要求
+
+完成后停下来，不要开始编码。
+```
+
+第二步，让 Codex 自己进入 long-running harness 并执行：
+
+```text
+现在按 .ai-harness/BUILD_PLAN.md 执行长任务。
+
+请你自己完成 long-running harness 初始化：
+1. 如果 .ai-harness/ACTIVE 不存在，创建它。
+2. 读取 BUILD_PLAN.md、PROGRESS.md、STEER.md、EVALUATOR_RUBRIC.md、test-results.json。
+3. 一次只执行一个 bounded item。
+4. 每轮更新 PROGRESS.md 和 test-results.json。
+5. 没有真实验证证据，不允许把验收项标记为 passed。
+6. 必要时使用 harness_builder、harness_evaluator、go_reviewer 或 security_reviewer 等 subagent。
+7. 不要让多个 builder 同时修改同一批文件。
+8. 全部验收通过后，删除 .ai-harness/ACTIVE，并给出最终总结。
+
+现在从 BUILD_PLAN.md 的第一项开始。
+```
+
+暂停、恢复和结束也用对话驱动：
+
+```text
+暂停当前长任务。请创建 .ai-harness/AGENT_STOP，并更新 PROGRESS.md，写清楚当前进度和下次恢复入口。
+```
+
+```text
+恢复长任务。请删除 .ai-harness/AGENT_STOP，读取 PROGRESS.md 和 STEER.md，然后从下一个未完成项继续。
+```
+
+```text
+结束长任务。请确认 PROGRESS.md 和 test-results.json 已更新，然后删除 .ai-harness/ACTIVE，并总结完成项、验证证据和剩余风险。
+```
+
 ## 它的价值是什么
 
 如果没有这套工作台，团队通常会遇到这些问题：
