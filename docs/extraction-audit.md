@@ -74,7 +74,7 @@ These should remain in each project repository:
 - schema and release specifics
 - API compatibility notes tied to one product
 - repository-specific examples that leak business semantics
-- strongly tool-specific bootstrap behavior such as `using-superpowers`
+- strongly tool-specific bootstrap behavior such as `using-superpowers`; use the Superpowers plugin instead of vendoring it into generated projects by default
 - local skill-authoring helpers such as `writing-skills` until contributor workflow is formalized
 
 ## Optional Next Extraction Candidates
@@ -101,9 +101,9 @@ Reason they are not in the default baseline:
 - they change operating style, not only coding style
 - some overlap with current `.codex/agents` and verification conventions
 
-## Triaged Local `.codex/skills`
+## Triaged Former Local `.codex/skills`
 
-Current decision for `C:\software\backend\.codex\skills`:
+Current decision for the former local backend `.codex/skills` pack:
 
 - already absorbed into `core/`:
   - `systematic-debugging`
@@ -118,8 +118,8 @@ Current decision for `C:\software\backend\.codex\skills`:
   - `dispatching-parallel-agents`
   - `subagent-driven-development`
   - `using-git-worktrees`
-- keep local for now:
-  - `using-superpowers`
+- keep out of generated projects by default:
+  - `using-superpowers` (provided by the user-level Superpowers plugin)
   - `writing-skills`
   - `brainstorming`
-- no untriaged high-confidence `.codex/skills` remain in the current local backend set
+- no untriaged high-confidence local skill packs remain in the current backend set

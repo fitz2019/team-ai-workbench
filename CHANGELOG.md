@@ -44,6 +44,7 @@ The format is intentionally simple:
 - `core/AGENTS.md` now mirrors the more practical workspace entry style proven in the local backend setup while remaining cross-role
 - `core/.codex/AGENTS.md` now uses repository-generic runtime guidance instead of backend-specific wording
 - `scripts/init-project.ps1` now installs shared skills into `.agents/skills/`, matching Codex's official repository skill discovery surface
+- `core` and `roles/backend` now treat `.agents/skills/` as the only default repo-local skill surface and direct external workflow packs such as Superpowers to user-level plugins
 - `roles/backend/.agents/tech-stack.md` now includes stronger Redis consistency, cluster-slot, MQ reliability, observability, and external-dependency guidance
 - `roles/backend/.agents/commands.md` now gives clearer Git-root handling and narrower verification guidance
 - `roles/backend/.agents/completion.md` now tightens backend verification expectations for changed behavior, external dependencies, and doc/release outputs

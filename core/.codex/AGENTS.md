@@ -13,7 +13,7 @@ This file supplements the root `AGENTS.md`.
 - `.codex/config.toml` defines project-local Codex runtime defaults.
 - `.codex/agents/*.toml` defines helper roles for multi-agent workflows.
 - `.agents/skills/` is the official repository skill discovery surface.
-- Local `.codex/skills/` are optional capability packs, not the primary rule source.
+- Do not create repo-local `.codex/skills/` by default; use enabled user-level plugins for external workflow packs such as Superpowers.
 - Root `agents/` and `.agents/skills/` can be treated as the curated reusable library for agent and workflow patterns.
 
 ## Default Operating Mode

@@ -23,7 +23,7 @@ Load this file when touching Go code, Redis, DB, MQ, WS, cache, concurrency, ext
 - Work as a senior Go backend engineer for cloud-native distributed systems
 - Prefer existing repository layers, helpers, logging style, validation style, DB access style, and Redis helpers
 - Keep abstractions small and introduced only when they remove real complexity
-- Prefer the repository root `skills/` surface when a reusable workflow clearly applies; legacy `.codex/skills` can still be referenced when needed
+- Prefer `.agents/skills/` for project-owned reusable workflows. Use enabled user-level plugins for external workflow packs such as Superpowers.
 
 ## Architecture Boundaries
 

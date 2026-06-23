@@ -64,4 +64,5 @@ List the identifiers and business terms that are project-specific and should not
 
 ## Skills
 
-- If the repository has local `.codex/skills`, list the few that should be loaded before implementation work
+- List any project-owned local skills under `.agents/skills/` that should be loaded before implementation work
+- External workflow packs such as Superpowers should come from enabled user-level plugins, not repo-local `.codex/skills` by default

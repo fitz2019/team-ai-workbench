@@ -27,6 +27,6 @@ Examples:
 ## Relationship To Other Skill Directories
 
 - `.agents/skills/` = canonical repository skill location in generated projects
-- `.codex/skills/` = legacy local capability pack, when present in older projects
+- user-level plugins = external workflow packs such as Superpowers
 
-If a skill appears in both `.agents/skills/` and `.codex/skills/`, treat `.agents/skills/` as the source of truth.
+Do not create repo-local `.codex/skills/` by default. If a project intentionally vendors a local skill pack for reproducibility or offline use, keep that decision project-specific and document it in that repository.

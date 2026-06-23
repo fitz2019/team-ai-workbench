@@ -42,7 +42,7 @@ Within loaded modules:
 
 `.agents/` is the shared baseline rule system. Keep it generic by default.
 
-`.agents/skills/` is the canonical repository skill surface. Legacy `.codex/skills/` can exist in older projects, but it is not the primary rule source.
+`.agents/skills/` is the canonical repository skill surface. Do not create repo-local `.codex/skills/` by default; use enabled user-level plugins for external workflow packs such as Superpowers.
 
 Do not convert these rules into a Codex skill unless the same workflow is repeatedly useful across multiple repositories, such as:
 

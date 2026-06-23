@@ -72,7 +72,7 @@ Identify the exact local improvement in:
 - `C:\software\backend\AGENTS.md`
 - `C:\software\backend\.agents\`
 - `C:\software\backend\skills\`
-- `C:\software\backend\.codex\skills\`
+- `C:\software\backend\.agents\skills\`
 - local docs or knowledge files when they contain reusable patterns
 
 ### 2. Generate A Clean Comparison Target

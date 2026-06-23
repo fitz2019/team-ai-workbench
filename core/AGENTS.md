@@ -25,7 +25,7 @@ Before generating, modifying, or reviewing code, tests, architecture, or technic
 `.agents/` is the workspace rule system. Do not convert it into a Codex skill by default; extract a separate skill only when the same workflow becomes useful across multiple repositories.
 
 The preferred shared local skill surface for this workspace is `.agents/skills/`, which is Codex's official repository skill discovery surface.
-Existing `.codex/skills/` remains available as a legacy local capability pack and does not replace `.agents/` as the rule source.
+Do not create repo-local `.codex/skills/` by default. External workflow packs such as Superpowers should come from enabled user-level plugins, while project-owned reusable skills should live under `.agents/skills/`.
 The shared `.agents/skills/coding-discipline/` skill is available when an explicit reusable reminder is helpful, but `.agents/coding-discipline.md` remains the default rule path.
 
 ## Codex Harness
