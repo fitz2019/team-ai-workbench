@@ -1,6 +1,6 @@
 ---
 name: documentation-lookup
-description: Use up-to-date library and framework docs via Context7 or primary docs instead of memory.
+description: Use when library, framework, API, or release behavior should be verified against current primary docs.
 metadata:
   origin: ECC
   adapted_for: team-ai-workbench

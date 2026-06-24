@@ -1,0 +1,6 @@
+interface:
+  display_name: "Deployment Patterns"
+  short_description: "Check deployment readiness and rollback"
+  default_prompt: "Use $deployment-patterns to review this release path, health checks, and rollback plan."
+policy:
+  allow_implicit_invocation: true

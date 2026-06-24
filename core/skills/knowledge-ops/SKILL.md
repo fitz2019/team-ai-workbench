@@ -1,6 +1,6 @@
 ---
 name: knowledge-ops
-description: Guidance for storing, syncing, deduplicating, and retrieving durable project and team knowledge.
+description: Use when storing, syncing, deduplicating, or retrieving durable project or team knowledge.
 metadata:
   origin: ECC
   adapted_for: team-ai-workbench

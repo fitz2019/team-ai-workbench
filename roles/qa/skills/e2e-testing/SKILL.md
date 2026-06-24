@@ -1,6 +1,6 @@
 ---
 name: e2e-testing
-description: Playwright-style E2E testing patterns, artifact management, and flaky-test handling for critical flows.
+description: Use when designing Playwright-style end-to-end checks, handling artifacts, or investigating flaky critical flows.
 metadata:
   origin: ECC
   adapted_for: team-ai-workbench

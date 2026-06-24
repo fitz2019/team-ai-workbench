@@ -1,6 +1,6 @@
 ---
 name: browser-qa
-description: Automated visual testing and UI interaction verification using browser automation after feature changes.
+description: Use when verifying browser-facing behavior, visual state, or UI interactions after feature changes.
 metadata:
   origin: ECC
   adapted_for: team-ai-workbench

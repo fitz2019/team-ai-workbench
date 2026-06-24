@@ -1,0 +1,6 @@
+interface:
+  display_name: "API Design"
+  short_description: "Review REST API contracts and evolution"
+  default_prompt: "Use $api-design to review this API contract for naming, compatibility, errors, and pagination."
+policy:
+  allow_implicit_invocation: true

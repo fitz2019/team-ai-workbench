@@ -1,6 +1,6 @@
 ---
 name: docker-patterns
-description: Containerization and local multi-service orchestration patterns for backend projects.
+description: Use when changing Dockerfiles, compose files, containers, or local multi-service orchestration.
 metadata:
   origin: ECC
   adapted_for: team-ai-workbench

@@ -1,6 +1,6 @@
 ---
 name: security-review
-description: Shared security review checklist and vulnerability patterns for authentication, input handling, secrets, and sensitive flows.
+description: Use when reviewing authentication, authorization, tenant boundaries, input handling, secrets, or sensitive flows.
 metadata:
   origin: ECC
   adapted_for: team-ai-workbench

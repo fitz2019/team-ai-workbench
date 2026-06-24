@@ -1,6 +1,6 @@
 ---
 name: deployment-patterns
-description: Deployment workflows, health checks, rollback strategy, and production readiness patterns for backend services.
+description: Use when reviewing backend deployment readiness, health checks, rollback strategy, or production release flows.
 metadata:
   origin: ECC
   adapted_for: team-ai-workbench

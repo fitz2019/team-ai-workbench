@@ -1,0 +1,6 @@
+interface:
+  display_name: "Systematic Debugging"
+  short_description: "Investigate bugs before proposing fixes"
+  default_prompt: "Use $systematic-debugging to investigate this failure before proposing code changes."
+policy:
+  allow_implicit_invocation: true

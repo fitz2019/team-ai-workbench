@@ -1,0 +1,6 @@
+interface:
+  display_name: "Browser QA"
+  short_description: "Verify browser flows and visual behavior"
+  default_prompt: "Use $browser-qa to verify this browser-facing change with focused UI checks."
+policy:
+  allow_implicit_invocation: true

@@ -1,6 +1,6 @@
 ---
 name: database-migrations
-description: Safe database migration patterns for schema changes, data backfills, rollouts, and rollback planning.
+description: Use when planning schema changes, data backfills, rollout safety, rollback, or migration verification.
 metadata:
   origin: ECC
   adapted_for: team-ai-workbench

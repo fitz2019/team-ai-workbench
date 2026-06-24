@@ -1,0 +1,6 @@
+interface:
+  display_name: "Database Migrations"
+  short_description: "Plan safe schema and data migrations"
+  default_prompt: "Use $database-migrations to review this migration for rollout, rollback, and data safety."
+policy:
+  allow_implicit_invocation: true

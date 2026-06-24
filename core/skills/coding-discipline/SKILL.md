@@ -1,6 +1,6 @@
 ---
 name: coding-discipline
-description: Use before code changes, bug fixes, refactors, or technical plans to keep implementation cautious, simple, scoped, and verifiable.
+description: Use when planning or performing code changes, bug fixes, refactors, reviews, or technical plans.
 metadata:
   origin: multica-ai/andrej-karpathy-skills
   adapted_for: team-ai-workbench

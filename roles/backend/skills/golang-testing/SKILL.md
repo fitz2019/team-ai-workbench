@@ -1,6 +1,6 @@
 ---
 name: golang-testing
-description: Go testing patterns including table-driven tests, subtests, benchmarks, fuzzing, and TDD-oriented verification.
+description: Use when writing or reviewing Go tests, table-driven tests, subtests, benchmarks, fuzzing, or TDD checks.
 metadata:
   origin: ECC
   adapted_for: team-ai-workbench

@@ -1,6 +1,6 @@
 ---
 name: ai-regression-testing
-description: Regression testing patterns for AI-assisted development, focused on catching contract drift and path inconsistency that code review often misses.
+description: Use when validating AI-assisted changes that may cause contract drift, path inconsistency, or missed regressions.
 metadata:
   origin: ECC
   adapted_for: team-ai-workbench

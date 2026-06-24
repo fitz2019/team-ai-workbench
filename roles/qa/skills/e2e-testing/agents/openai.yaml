@@ -1,0 +1,6 @@
+interface:
+  display_name: "E2E Testing"
+  short_description: "Design end-to-end regression checks"
+  default_prompt: "Use $e2e-testing to design focused end-to-end checks for this critical flow."
+policy:
+  allow_implicit_invocation: true

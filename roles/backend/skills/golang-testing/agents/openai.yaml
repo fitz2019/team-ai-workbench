@@ -1,0 +1,6 @@
+interface:
+  display_name: "Golang Testing"
+  short_description: "Write focused Go tests and benchmarks"
+  default_prompt: "Use $golang-testing to design targeted Go tests for this behavior."
+policy:
+  allow_implicit_invocation: true

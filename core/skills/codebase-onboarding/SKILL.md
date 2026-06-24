@@ -1,6 +1,6 @@
 ---
 name: codebase-onboarding
-description: Analyze an unfamiliar backend codebase and generate a structured onboarding guide plus starter project instructions.
+description: Use when exploring an unfamiliar backend codebase and producing a structured onboarding map or starter instructions.
 metadata:
   origin: ECC
   adapted_for: team-ai-workbench

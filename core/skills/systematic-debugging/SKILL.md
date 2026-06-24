@@ -1,6 +1,6 @@
 ---
 name: systematic-debugging
-description: Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes.
+description: Use when encountering bugs, test failures, unexpected behavior, or unclear root causes.
 metadata:
   origin: local-backend-codex
   adapted_for: team-ai-workbench

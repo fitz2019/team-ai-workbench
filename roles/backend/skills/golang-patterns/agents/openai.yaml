@@ -1,0 +1,6 @@
+interface:
+  display_name: "Golang Patterns"
+  short_description: "Apply idiomatic Go backend patterns"
+  default_prompt: "Use $golang-patterns to review this Go backend change for idioms, errors, context, and concurrency."
+policy:
+  allow_implicit_invocation: true

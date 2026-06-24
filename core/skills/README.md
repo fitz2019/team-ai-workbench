@@ -24,6 +24,33 @@ Examples:
 - `systematic-debugging`
 - `verification-before-completion`
 
+## Productized Skill Shape
+
+For the repository-wide skill authoring standard, see [`../../docs/skill-authoring-standard.md`](../../docs/skill-authoring-standard.md).
+
+Each skill should use the standard Codex skill layout:
+
+```text
+skill-name/
+  SKILL.md
+  agents/
+    openai.yaml
+```
+
+`SKILL.md` must include frontmatter with:
+
+- `name`: matches the folder name
+- `description`: starts with `Use when...` and describes trigger conditions, not a process summary
+
+`agents/openai.yaml` should include:
+
+- `interface.display_name`
+- `interface.short_description`
+- `interface.default_prompt` with the `$skill-name` invocation
+- `policy.allow_implicit_invocation`
+
+Only add tool dependencies when the skill genuinely depends on an MCP or other declared capability.
+
 ## Relationship To Other Skill Directories
 
 - `.agents/skills/` = canonical repository skill location in generated projects

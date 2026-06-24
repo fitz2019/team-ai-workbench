@@ -1,6 +1,6 @@
 ---
 name: verification-before-completion
-description: Use before claiming work is complete, fixed, or passing.
+description: Use when preparing to claim work is complete, fixed, passing, or ready for review.
 metadata:
   origin: local-backend-codex
   adapted_for: team-ai-workbench

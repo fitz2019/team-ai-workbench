@@ -1,6 +1,6 @@
 ---
 name: golang-patterns
-description: Idiomatic Go patterns, best practices, and conventions for building robust, efficient, and maintainable Go backend services.
+description: Use when implementing or reviewing Go backend code for idioms, context, errors, concurrency, DB, cache, or maintainability.
 metadata:
   origin: ECC
   adapted_for: team-ai-workbench

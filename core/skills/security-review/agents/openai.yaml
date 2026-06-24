@@ -1,0 +1,6 @@
+interface:
+  display_name: "Security Review"
+  short_description: "Review auth, secrets, and sensitive flows"
+  default_prompt: "Use $security-review to review this change for auth, tenant, secret, and sensitive-data risks."
+policy:
+  allow_implicit_invocation: true

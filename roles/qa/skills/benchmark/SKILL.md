@@ -1,6 +1,6 @@
 ---
 name: benchmark
-description: Performance baseline and regression measurement for API, build, or browser-facing workflows.
+description: Use when measuring performance baselines or regressions for APIs, builds, browser flows, or backend hot paths.
 metadata:
   origin: ECC
   adapted_for: team-ai-workbench

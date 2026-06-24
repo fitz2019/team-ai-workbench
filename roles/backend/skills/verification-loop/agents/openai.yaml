@@ -1,0 +1,6 @@
+interface:
+  display_name: "Verification Loop"
+  short_description: "Run a scoped post-change verification loop"
+  default_prompt: "Use $verification-loop to choose and run the right scoped verification for this change."
+policy:
+  allow_implicit_invocation: true

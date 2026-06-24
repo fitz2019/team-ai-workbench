@@ -1,6 +1,6 @@
 ---
 name: verification-loop
-description: A reusable post-change verification sequence adapted for Go backend projects.
+description: Use when choosing and running scoped post-change verification for Go backend work.
 metadata:
   origin: ECC
   adapted_for: team-ai-workbench
