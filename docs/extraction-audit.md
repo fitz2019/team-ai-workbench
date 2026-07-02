@@ -4,6 +4,24 @@ This document records the current extraction status from `C:\software\backend` i
 
 ## Already Extracted
 
+Latest selective backport from the live `C:\software\backend` project:
+
+- Loop Engineering runtime additions:
+  - `.codex/harness/start-loop.ps1`
+  - `.codex/harness/record-evaluation.ps1`
+  - `.codex/harness/finish-loop.ps1`
+  - `.codex/harness/archive-loop.ps1`
+  - `.ai-harness/LOOP_STATE.json`
+  - `.ai-harness/runs/`
+  - stop-gate integration for paused/max-round loop states
+- generated `AGENTS.md` execution-flow wording for scoped verification, existing-code inspection, external I/O context propagation, and optional project knowledge lookup
+- `.agents/forbidden.md` red lines for Redis configuration source-of-truth and non-silent cache, delivery, and background-task failures
+- `.agents/security.md` clarification that the module protects authorization, tenant isolation, and sensitive data
+- backend `tech-stack.md` risk-focus guidance for API compatibility, tenant/owner/permission boundaries, DB/Redis consistency, async idempotency, and release/rollback checks
+- backend `project-specific.md.example` sections for exact commands, knowledge capture, and project-local delivery notes
+- `.codex/AGENTS.md` clarification of `.codex`, `.agents`, `.agents/skills`, and `.ai-harness` responsibilities
+- `.codex/config.toml` persistent instruction tightened to route through `AGENTS.md` and `.agents/index.md`, preserve project patterns, and verify only touched scope
+
 Shared rule modules:
 
 - `AGENTS.md`

@@ -63,6 +63,8 @@ These rules are hard boundaries.
 - Do not release a Redis lock without verifying the unique lock value
 - Do not use Redis Pub/Sub or List as a reliable core message queue without ACK, retry, timeout recovery, dead letter, and idempotent consumption
 - Do not allow DB writes to succeed while cache invalidation fails silently
+- Do not treat Redis as the long-term source of truth for configuration-like data unless the business explicitly defines Redis as durable state and the persistence, TTL, invalidation, and recovery strategy are documented
+- Do not treat cache invalidation, cache refresh, delivery, or background task failure as unimportant; record or return the failure with enough business context for follow-up
 
 ## Performance Red Lines
 
@@ -81,7 +83,7 @@ These rules are hard boundaries.
 
 - Do not run full repository `go test ./...`, `go vet ./...`, or `staticcheck ./...` unless the user explicitly asks
 - Self-review and verification must focus only on files, packages, exact tests, and code paths touched by the current task
-- Prefer target or exact tests first
+- Prefer target or exact tests first. If package-level confidence is needed, run the full test suite only for the touched package or packages
 - Do not widen verification to unrelated packages, unrelated files, or repository-wide checks just to look thorough
 - Do not hide failing verification
 

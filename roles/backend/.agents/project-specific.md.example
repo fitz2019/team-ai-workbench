@@ -14,12 +14,12 @@ purpose: Workspace-specific business, documentation, API, DB, and communication 
 
 Load this file whenever project behavior, docs, API, DB, or business logic is touched.
 
-This is the primary file to edit when adapting the shared AI collaboration baseline to a new project.
+This file is the main adaptation layer for any project that uses this workbench.
 
 ## Workspace
 
 - Workspace root: `C:\path\to\project`
-- If the workspace contains nested repositories, run Git commands from the actual repository root
+- If the workspace contains nested repositories, note them here and run Git commands from the actual repository root
 
 ## Language And Communication
 
@@ -32,6 +32,17 @@ This is the primary file to edit when adapting the shared AI collaboration basel
 - If the user says "只负责后端" or equivalent, do not modify frontend code
 - For API changes, describe request fields, response fields, compatibility, examples, and caller adaptation steps
 - Preserve API backward compatibility by default
+
+## Commands
+
+List the exact commands used in this project:
+
+- build:
+- targeted test:
+- package test:
+- lint:
+- migration:
+- local run:
 
 ## Current Project Vocabulary
 
@@ -61,6 +72,17 @@ List the identifiers and business terms that are project-specific and should not
 ## Security Sensitivity
 
 - Document the repository's tenant, owner, permission, and cross-scope risk points here
+
+## Knowledge Capture
+
+- Do not treat raw chat history as the project knowledge base by default
+- Durable project knowledge should be summarized into project-owned docs such as `docs/knowledge/`, `docs/runbooks/`, or the repository's chosen equivalent
+- Decisions that affect implementation, release behavior, debugging, or regression strategy should be written as durable notes rather than left only in chat history
+- If a pattern becomes reusable across multiple repositories, promote it upstream into `team-ai-workbench` instead of duplicating it in many project-local notes
+
+## Delivery Notes
+
+- Document API compatibility expectations, DB rollout notes, schema conventions, and release constraints that are project-specific
 
 ## Skills
 

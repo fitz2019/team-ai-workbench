@@ -9,6 +9,19 @@ Start the final response with exactly one of:
 - `PASS`
 - `NEEDS_WORK`
 
+Then include:
+
+- `Current item:` the work item id being evaluated
+- `Failure key:` a short stable label when the result is `NEEDS_WORK`
+- `Findings:` concise findings that can be copied into `NEXT_FINDINGS.md`
+- `Evidence reviewed:` paths or command summaries inspected
+
+The evaluator must not edit files. The main conversation or `progress_keeper` records the evaluator result with:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\.codex\harness\record-evaluation.ps1 -Result NEEDS_WORK -Findings "..." -FailureKey "..."
+```
+
 ## Review Inputs
 
 Read:

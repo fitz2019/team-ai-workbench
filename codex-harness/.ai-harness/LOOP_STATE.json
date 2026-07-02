@@ -1,0 +1,14 @@
+{
+  "status": "pending",
+  "current_item": "W1",
+  "round": 0,
+  "max_rounds": 6,
+  "same_failure_key": "",
+  "same_failure_count": 0,
+  "max_same_failure_count": 3,
+  "last_result": "",
+  "run_id": "",
+  "started_at": "",
+  "updated_at": "",
+  "notes": "Loop state is managed by .codex/harness/*.ps1. Keep evaluator read-only; record evaluator output through record-evaluation.ps1."
+}

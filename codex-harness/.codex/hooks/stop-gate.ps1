@@ -67,6 +67,20 @@ function Get-FailingCriteria {
     return $failures
 }
 
+function Get-LoopState {
+    param([string]$Path)
+
+    if (-not (Test-Path -LiteralPath $Path)) {
+        return $null
+    }
+
+    try {
+        return Get-Content -Raw -LiteralPath $Path | ConvertFrom-Json
+    } catch {
+        return $null
+    }
+}
+
 $payload = Read-HookPayload
 $root = Get-RepoRoot -Payload $payload
 $harnessRoot = Join-Path $root ".ai-harness"
@@ -90,6 +104,16 @@ if (-not (Test-Path -LiteralPath (Join-Path $harnessRoot "ACTIVE"))) {
     exit 0
 }
 
+$loopState = Get-LoopState -Path (Join-Path $harnessRoot "LOOP_STATE.json")
+if ($loopState -and $loopState.status -eq "paused") {
+    Write-StopJson ([ordered]@{
+        continue = $false
+        stopReason = "Loop state is paused"
+        systemMessage = "Team AI Workbench loop is paused by .ai-harness/LOOP_STATE.json. Review NEXT_FINDINGS.md and remove AGENT_STOP only when ready to continue."
+    })
+    exit 0
+}
+
 $testResultsPath = Join-Path $harnessRoot "test-results.json"
 $failures = Get-FailingCriteria -Path $testResultsPath
 
@@ -102,6 +126,15 @@ if ($failures.Count -eq 0) {
 }
 
 $message = "Harness active: failing or unevidenced criteria remain: $($failures -join ', '). Update PROGRESS.md, gather evidence, and keep test-results.json default-fail until verified."
+
+if ($loopState -and [int]$loopState.round -ge [int]$loopState.max_rounds) {
+    Write-StopJson ([ordered]@{
+        continue = $false
+        stopReason = "Loop max_rounds reached"
+        systemMessage = "$message Loop round limit reached ($($loopState.round)/$($loopState.max_rounds)); operator review required."
+    })
+    exit 0
+}
 
 if ($payload -and $payload.stop_hook_active) {
     Write-StopJson ([ordered]@{

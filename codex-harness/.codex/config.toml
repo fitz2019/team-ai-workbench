@@ -2,7 +2,7 @@ approval_policy = "on-request"
 sandbox_mode = "workspace-write"
 web_search = "live"
 
-persistent_instructions = "This repository is managed by the Team AI Workbench Codex harness. Start from AGENTS.md, route through .agents/index.md, and use .ai-harness files when long-running mode is active."
+persistent_instructions = "Root AGENTS.md and .agents/ are the project source of truth. Route through .agents/index.md first, load only the required modules, preserve existing project patterns, and verify only the touched scope. Use .ai-harness files only when long-running mode is active."
 
 [features]
 hooks = true

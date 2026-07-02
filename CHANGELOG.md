@@ -16,9 +16,11 @@ The format is intentionally simple:
 - `codex-harness/` as the main cwc-style Codex runtime architecture, including:
   - `.codex/config.toml`
   - Codex hook scripts
+  - loop engine scripts under `.codex/harness/`
   - long-running builder, evaluator, and progress agents
   - `.ai-harness/` durable runtime files
   - `.agents/harness-runtime.md`
+- `.ai-harness/LOOP_STATE.json` and `.ai-harness/runs/` for loop status, round limits, repeated-failure limits, evaluator records, and archived snapshots
 - `docs/harness-architecture.md` to explain how the cwc-style harness maps to Codex
 - `core/skills/README.md` to document `.agents/skills/` as the canonical generated repository skill surface
 - `core/.agents/coding-discipline.md` as a shared baseline module for:
@@ -37,6 +39,18 @@ The format is intentionally simple:
 
 ### Changed
 
+- `codex-harness` now includes a fuller Loop Engineering flow:
+  - `start-loop.ps1` initializes `BUILD_PLAN.md`, `test-results.json`, `LOOP_STATE.json`, `runs/<run_id>/`, and `ACTIVE`
+  - `record-evaluation.ps1` writes evaluator results into `NEXT_FINDINGS.md`, `LOOP_STATE.json`, and `runs/<run_id>/evaluator-###.md`
+  - `finish-loop.ps1` ends the loop only after evidence and a `PASS` evaluator result, unless manually forced
+  - `archive-loop.ps1` snapshots current harness state without copying large evidence files
+  - default limits are `max_rounds=6`, `max_same_failure_count=3`, and no auto-continuation unless `CONTINUE_ON_STOP` exists
+- Backported reusable lessons from the local `C:\software\backend` harness without copying project-specific business facts:
+  - clearer generated `AGENTS.md` execution flow around existing-code inspection, scoped verification, external I/O context propagation, and project knowledge lookup
+  - stronger shared red lines for Redis configuration source-of-truth, cache invalidation failures, background task failures, and scoped package verification
+  - clearer Codex runtime supplement that separates `.codex/`, `.agents/`, and `.ai-harness/` responsibilities
+  - backend role guidance for API compatibility, tenant/owner/permission boundaries, Redis/DB consistency, async idempotency, and release/rollback thinking
+  - richer backend `project-specific.md.example` with command, knowledge-capture, and delivery-note sections
 - `scripts/init-project.ps1` now installs the Codex harness by default and keeps `core/roles/templates` as rule and role packs consumed by the harness
 - README and README.zh-CN now position the repository as a Codex harness workbench, not just a rule/template repository
 - `core/AGENTS.md` and `core/.agents/index.md` now include the harness runtime route proven in the local backend project

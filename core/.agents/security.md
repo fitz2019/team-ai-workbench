@@ -20,6 +20,8 @@ purpose: Authorization, tenant isolation, and sensitive data boundaries.
 
 Load this file before code generation, code modification, code review, refactor, API design, or architecture work that touches auth, permission, tenant, owner, user, token, cookie, webhook, upload, external callback, or sensitive data.
 
+These rules protect authorization, tenant isolation, and sensitive data.
+
 ## Identity And Authorization
 
 - Do not trust frontend-supplied `user_id`, `tenant_id`, `owner_id`, role, resource ownership, or permission fields

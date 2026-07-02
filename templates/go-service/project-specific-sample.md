@@ -3,7 +3,7 @@
 ```md
 ## Workspace
 
-- Workspace root: `C:\repo\order-service`
+- Workspace root: `C:\repo\example-service`
 - Main repository: root repo, no nested git repositories
 
 ## Language And Communication
@@ -14,15 +14,15 @@
 ## Current Project Vocabulary
 
 - `tenant_id`: tenant scope
-- `order_id`: order primary business identifier
-- `buyer_uid`: buyer identity in upstream platform
-- `delivery_task_id`: async delivery tracking identifier
+- `resource_id`: primary business resource identifier
+- `actor_id`: authenticated user or service actor identifier
+- `task_id`: async delivery or background task tracking identifier
 
 ## Commands
 
 - Build: `go build ./cmd/server`
 - Unit test: `go test ./internal/... -count=1`
-- Touched package test: `go test ./internal/order -run TestName -count=1`
+- Touched package test: `go test ./internal/example -run TestName -count=1`
 - Lint: `golangci-lint run`
 - Migration up: `make migrate-up`
 - Migration down: `make migrate-down`

@@ -17,16 +17,16 @@ Before generating, modifying, or reviewing code, tests, architecture, or technic
 
 1. Read and follow `.agents/index.md`.
 2. Read `.agents/quick-check.md` as a short preflight checklist.
-3. Load the task-specific modules required by the request, including `.agents/coding-discipline.md` for non-trivial coding work.
+3. Load the `.agents/` modules required by the task, including `.agents/coding-discipline.md` for non-trivial coding work.
 4. Keep context small: do not read every module unless the task needs it.
 
 `.agents/examples.md` is optional and routes to focused examples under `.agents/examples/`.
 
 `.agents/` is the workspace rule system. Do not convert it into a Codex skill by default; extract a separate skill only when the same workflow becomes useful across multiple repositories.
 
-The preferred shared local skill surface for this workspace is `.agents/skills/`, which is Codex's official repository skill discovery surface.
-Do not create repo-local `.codex/skills/` by default. External workflow packs such as Superpowers should come from enabled user-level plugins, while project-owned reusable skills should live under `.agents/skills/`.
+The official repository skill discovery surface for this workspace is `.agents/skills/`.
 The shared `.agents/skills/coding-discipline/` skill is available when an explicit reusable reminder is helpful, but `.agents/coding-discipline.md` remains the default rule path.
+Do not create repo-local `.codex/skills/` by default. External workflow packs such as Superpowers should come from enabled user-level plugins, while project-owned reusable skills should live under `.agents/skills/`.
 
 ## Codex Harness
 
@@ -84,9 +84,11 @@ When repository patterns conflict with a preference rule, preserve behavior, kee
 
 When working in this workspace:
 
-1. Read the request and relevant existing files before changing anything.
+1. Read the request and relevant existing code or documents before changing files.
 2. Keep edits limited to the requested behavior.
-3. Prefer existing repository patterns over generic rewrites.
-4. Verify only the touched scope unless the user explicitly asks for a wider check.
-5. Final responses should state what changed, what was verified, and any residual risk or intentional tradeoff.
-6. When a task produces durable project knowledge, prefer writing it into project-owned docs or runbooks rather than leaving it only in chat history.
+3. Prefer existing repository patterns for services, data access, logging, validation, tests, and integrations.
+4. For new or touched external I/O, pass `context.Context` or the repository's equivalent cancellation mechanism through the call chain where practical; if compatibility prevents this, state the reason.
+5. Verify only touched packages, files, or exact tests unless the user asks for a wider check; prefer target tests first, and run full package tests only for packages changed by this task.
+6. Final responses should state what changed, what was verified, and any residual risk or intentional rule tradeoff.
+7. When a task produces durable project knowledge, prefer writing it into project-owned docs or runbooks rather than leaving it only in chat history.
+8. When a task may depend on previously distilled project knowledge, check the project-owned knowledge location if one exists and load only the relevant file.

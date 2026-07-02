@@ -41,6 +41,39 @@ Load this file when touching Go code, Redis, DB, MQ, WS, cache, concurrency, ext
 - If a function would take more than three business parameters, prefer a parameter struct
 - New exported Go identifiers should follow the repository's GoDoc language convention, and the GoDoc should begin with the identifier name when practical
 
+## Backend Risk Focus
+
+Apply the general coding discipline most strictly to these recurring backend risks:
+
+### API Compatibility
+
+- Before coding, identify whether the change adds fields, changes semantics, or risks breaking request/response compatibility
+- Prefer additive, backward-compatible API changes unless the user explicitly accepts a breaking change
+- If request fields such as tenant, owner, user, role, resource, platform, or business-scope identifiers are involved, confirm whether they come from trusted context or request payload
+
+### Tenant, Owner, And Permission Boundaries
+
+- Do not guess identity, tenant, owner, or permission rules from parameter names alone
+- When the business boundary is unclear, stop and confirm the trusted source and enforcement path before implementing
+- Simpler code is not better if it weakens cross-tenant, cross-owner, or cross-scope isolation; security and scope boundaries win
+
+### Redis And DB Consistency
+
+- Do not introduce cache writes, invalidation, TTL, or read-through behavior without first naming the consistency strategy
+- Prefer the smallest design that preserves clear source-of-truth behavior; do not add clever cache layers speculatively
+- When a change touches both DB and Redis, define what proves correctness: exact write path, invalidation path, stale-data window, and failure logging
+
+### Async, MQ, And Idempotency
+
+- Before coding async work, clarify retry behavior, duplicate handling, timeout recovery, and idempotency key or business key
+- Do not solve delivery uncertainty by stacking retries and goroutines without an explicit bounded design
+- Keep the fix surgical: change the exact delivery path or state transition involved, not the entire async framework
+
+### Release And Rollback
+
+- If the task affects schema, persisted state, configuration, or a public API, define rollout and rollback checks before implementation completes
+- Success is not only "code compiles" but also whether deployment order, rollback path, and compatibility notes are clear enough for release
+
 ## DB
 
 - Pass `context.Context` into new or touched DB calls when practical. If repository compatibility prevents this, state the reason.
@@ -141,7 +174,7 @@ business:sub_business:object:business_id[:dimension]
 
 - Logs should be structured and include useful business fields such as `request_id`, `task_id`, `tenant_id`, `owner_id`, `entity_id`, `resource_id`, and `status`
 - Do not print complete sensitive payloads or cache values
-- Use log levels consistently
+- Use log levels consistently: expected business outcomes at INFO, retry or degradation at WARN, and unexpected failures that need attention at ERROR
 - For new critical tasks, delivery flows, workers, or external calls, consider latency, success/failure count, retry count, queue depth, and cache hit/miss metrics where the project has an existing metrics pattern
 - New health-critical dependencies should have an observable failure signal, such as logs, metrics, health checks, or existing alerting hooks
 - If a flow is important enough to need an operational handoff, also leave behind the key diagnostic command or runbook entry instead of relying only on chat history
